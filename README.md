@@ -1,9 +1,14 @@
-# node-socket-io-server
-node server with socket.io
+# Node-Express-Socket.io Chat Server
+
+The basic chat server created using Node, Express and Socket.io
 
 
-For installing chatserver run following commands inside chatserver directory
+###Installing Dependencies
 
-1)npm install  --- This will install all the modules required for this project
+Navigate to the project root directory and run the following commands to install all the dependencies needed by the project.
 
-2)node app.js -- This will be used to start the server
+````
+npm install
+bower install
+
+````
