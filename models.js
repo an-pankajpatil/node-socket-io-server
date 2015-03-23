@@ -6,8 +6,8 @@ var Schema = mongoose.Schema,
 exports.ObjectId = mongoose.Types.ObjectId;
 exports.version = mongoose.version;
 var AdminDt = new Object();
-AdminDt.email = "test@gmail.com";//gmail id
-AdminDt.passwrd = "testpass";//gmail account password
+AdminDt.email = "pankaj.p@applicationnexus.com";
+AdminDt.passwrd = "123India#@!";
 exports.AdminDetails = AdminDt;
 //mongoose.set('debug', true);
 /**
@@ -36,7 +36,13 @@ var memberSchema = new Schema({
         lat: Number
     },
 });
-
+memberSchema.virtual('id').get(function(){
+    return this._id.toHexString();
+})
+// Ensure virtual fields are serialised.
+memberSchema.set('toJSON', {
+    virtuals: true
+})
 memberSchema.pre('save', function(next) {
     var user = this;
 
@@ -96,6 +102,32 @@ adminSchema.pre('save', function(next) {
 
 
 exports.Admin = mongoose.model('Admin', adminSchema);
+
+
+
+var chatMessageSchema = new Schema({
+    msg: String,
+    stream_id    :String,
+    from_mem_id  : Schema.Types.ObjectId,
+    from_mem_name: String,
+    receipient_mem: [{ id: Schema.Types.ObjectId, first_name: String, last_name: String, email: String, read_flag: {default: 'false', type: String} }],
+    blocked_id:[],
+    msg_type: String,
+    display: {
+        type: String,
+        default: "true"
+    },
+    created_at: {
+        type   : Date,
+        index  : true,
+        default: Date.now
+    },
+    
+})
+
+chatMessageSchema.index({ from_mem_name: 1, to_mem_name: 1, msg_type: 1, organisation_id: 1});
+
+exports.Chatmessage = mongoose.model('Chatmessage', chatMessageSchema);
 
 
 
