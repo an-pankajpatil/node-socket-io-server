@@ -9,6 +9,5 @@ Navigate to the project root directory and run the following commands to install
 
 ````
 npm install
-bower install
 
 ````
