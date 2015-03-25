@@ -16,6 +16,6 @@
     "method-override": "~2.3.2",
     "morgan": "~1.5.2",
     "bcrypt": "~0.8.1",
-    "routes": "~2.0.0",
+    "routes": "~2.0.0"
   }
 }
